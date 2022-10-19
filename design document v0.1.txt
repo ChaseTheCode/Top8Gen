@@ -1,0 +1,52 @@
+==============================
+==           Chase's        ==
+==        Top 8 Banner      ==
+==          Generator       ==
+==============================
+
+Core Dependacies - as of 7/25/2022
+
+PIL 9.2.0 https://pillow.readthedocs.io/en/stable/
+ttkbootstrap 1.9.0 https://ttkbootstrap.readthedocs.io/
+
+What this App sets out to accomplish
+
+-Automate the process, so that an artist won't have to spend time manually putting in all the information in an image editing program (i.e. PhotoShop)
+-Generate an image file of Top 8 Finishes of an Event, for use of Social Media
+-Editable Blurbs, to advertise different things for different events
+-Unique CG and custom information placements depending on Event
+
+Core Features
+What Needs to be possible to acheive 1.0
+
+-Seperate config file for power user use
+-Event Name
+-Entrant Count
+-Bracket Short Slug
+-Player Team Name, with optional Logo
+-Player Name Tag
+-Player's Main Character, now in color! (Smash Only)
+-Up to 2 Secondary Icons, now in color! (Smash Only)
+-Player's Main Character, with accompanying Mid & Anchor (Team Fighters)
+-Placements up to 7th Place Ties
+
+1.+ Feature Ideas
+
+-Doubles Banners
+-Support for more and more games as needed
+-Continuous improvement to Code & UI Design
+
+Notes
+
+-I think since I'm having the option of passing up to 4 Secondary characters, it should be relatively simple to write a compiler flexible enough to do both 1v1 and 3v3 games
+
+Layering probably goes as follows: (Need to pass by Crown to make sure I'm getting my layering right)
+TOP
+-Layer 6: All other supplemental information (entrants, short slug, blurb, etc.)
+-Layer 5: Placement Numbers
+-Layer 4: Player Name Tags
+-Layer 3: Secondary Icons
+-Layer 2: Character Portraits
+-Layer 1: Superimposing Character Logos (where applicable)
+-Layer 0: Clean background
+BOTTOM

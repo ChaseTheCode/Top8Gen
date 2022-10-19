@@ -1,0 +1,1 @@
+TLOC,Tourney Locator,games,twitch,No Blocking,No Blocking Fridays,NB,DNF Duel, DNF,던전앤파이터, DNF Tournament, DNF Duel Tournament, 던전 앤 파이터 토너먼트, Berserker, Crusader, Dragon Knight, Enchantress, Ghost Blade, Grappler, Hit Man, Hitman, Inquisitor, Kunoichi, Launcher, Lost Warrior, LostWarrior, Ranger, Striker, Swift Master, SwiftMaster, Trouble Shooter, TroubleShooter, Vanguard,
