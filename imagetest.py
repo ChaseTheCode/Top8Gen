@@ -10,6 +10,29 @@ sponsor_big = Image.open('resources/events/USW/sponsor_big.png')
 sponsor_med = Image.open('resources/events/USW/sponsor_med.png')
 sponsor_sml = Image.open('resources/events/USW/sponsor_sml.png')
 
+entrants = {
+    "first_place" : {
+        "team" : "",
+        "name" : "CHASE",
+        "main_character" : "Mario",
+        "main_character_color" : "01",
+        "alternate_1" : None,
+        "alternate_1_color" : "00",
+        "alternate_2" : None,
+        "alternate_2_color" : "00",
+    },
+    "second_place" : {
+        "team" : "TLOC",
+        "name" : "Em",
+        "main_character" : "Isabelle",
+        "main_character_color" : "01",
+        "alternate_1" : "Luigi",
+        "alternate_1_color" : "00",
+        "alternate_2" : None,
+        "alternate_2_color" : "00",
+    }
+}
+
 
 # cat 1 box 600 x 75
 # cat 2 box 322 x 40
@@ -54,7 +77,7 @@ def create_sponsorbox(sponsorbox, fawnt, name, vOffset=0, color=(255, 255, 255, 
 # port size w 654 x h 706
 # icon size 64 x 64
 
-first_portrait = Image.open('resources/characters/SSBU/portraits/palutena_04.png')
+first_portrait = Image.open('resources/characters/SSBU/portraits/%s_%s.png' % (entrants["first_place"]["main_character"], entrants["first_place"]["main_character_color"]))
 
 first_portrait = first_portrait.resize((600, 647), Image.Resampling.LANCZOS)
 
@@ -74,7 +97,7 @@ fnt = ImageFont.truetype('resources/events/USW/font.ttf', 25)
 first_portrait.paste(sponsor_big, (445, 530))
 # open if sponsor text
 sponsor1_text = Image.new('RGBA', (spnsW, spnsH))
-sponsor1_text = create_sponsorbox(sponsor1_text, fnt, "HHHHH")
+sponsor1_text = create_sponsorbox(sponsor1_text, fnt, entrants["first_place"]["team"])
 first_portrait.paste(sponsor1_text, (510, 533), sponsor1_text)
 # close sponsor text
 
@@ -91,7 +114,7 @@ first_portrait.paste(sponsor1_image, (465, 535), sponsor1_image)
 fnt = ImageFont.truetype('resources/events/USW/font.ttf', 55)                                           
 
 namebox1 = Image.new('RGBA', (nboxW, nboxH))
-namebox1 = create_namebox(namebox1, fnt, "hhhhhhhhhhhhhhhh".upper())
+namebox1 = create_namebox(namebox1, fnt, entrants["first_place"]["name"])
 
 # 2nd-4th 322 x 348
 
