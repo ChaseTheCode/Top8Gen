@@ -74,8 +74,8 @@ fnt = ImageFont.truetype('resources/events/USW/font.ttf', 25)
 first_portrait.paste(sponsor_big, (445, 530))
 # open if sponsor text
 sponsor1_text = Image.new('RGBA', (spnsW, spnsH))
-sponsor1_text = create_sponsorbox(sponsor1_text, fnt, "RIVAL")
-first_portrait.paste(sponsor1_text, (520, 533), sponsor1_text)
+sponsor1_text = create_sponsorbox(sponsor1_text, fnt, "HHHHH")
+first_portrait.paste(sponsor1_text, (510, 533), sponsor1_text)
 # close sponsor text
 
 # open if sponsor image
@@ -88,7 +88,7 @@ first_portrait.paste(sponsor1_image, (465, 535), sponsor1_image)
 
 # close if sponsor
 
-fnt = ImageFont.truetype('resources/events/USW/font.ttf', 55)
+fnt = ImageFont.truetype('resources/events/USW/font.ttf', 55)                                           
 
 namebox1 = Image.new('RGBA', (nboxW, nboxH))
 namebox1 = create_namebox(namebox1, fnt, "hhhhhhhhhhhhhhhh".upper())
@@ -120,16 +120,16 @@ second_portrait.paste(sponsor_med, (197, 276))
 
 # open sponsor text
 sponsor2_text = Image.new('RGBA', (spnsW, spnsH))
-sponsor2_text = create_sponsorbox(sponsor2_text, fnt, "RIVAL")
-second_portrait.paste(sponsor2_text, (260, 277), sponsor2_text)
+sponsor2_text = create_sponsorbox(sponsor2_text, fnt, "HHHHH")
+second_portrait.paste(sponsor2_text, (250, 277), sponsor2_text)
 # close sponsor text
 
 # open sponsor image
-sponsor2_image = Image.open('resources/sponsors/frks.png')
+sponsor2_image = Image.open('resources/sponsors/TLOC.png')
 sponsor2_image.getbbox()
 sponsor2_image = sponsor2_image.crop(sponsor2_image.getbbox())
 sponsor2_image.thumbnail((80, 22), Image.Resampling.LANCZOS)
-second_portrait.paste(sponsor2_image, (215, 280), sponsor2_image)
+second_portrait.paste(sponsor2_image, (205, 279), sponsor2_image)
 # close sponsor image
 
 # close if sponsor
@@ -232,13 +232,13 @@ fifth_secondary_2 = fifth_secondary_2.resize((32,32), Image.Resampling.LANCZOS)
 fifth_portrait.paste(fifth_secondary_2, (166, 4), fifth_secondary_2)
 
 # open if sponsor
-fnt = ImageFont.truetype('resources/events/USW/font.ttf', 15)
+fnt = ImageFont.truetype('resources/events/USW/font.ttf', 13)
 fifth_portrait.paste(sponsor_sml, (144, 204))
 
 # open sponsor text
 sponsor5_text = Image.new('RGBA', (spnsW, spnsH))
-sponsor5_text = create_sponsorbox(sponsor5_text, fnt, "RIVAL")
-fifth_portrait.paste(sponsor5_text, (190, 205), sponsor5_text)
+sponsor5_text = create_sponsorbox(sponsor5_text, fnt, "HHHHH")
+fifth_portrait.paste(sponsor5_text, (188, 207), sponsor5_text)
 # close sponsor text
 
 # open sponsor image
@@ -433,4 +433,4 @@ bg.paste(blurb_box_2, (40, 983), blurb_box_2)
 bg.paste(blurb_box_3, (40, 1017), blurb_box_3)
 
 bg.paste(fg, (0,0), fg)
-bg.save('pasted_image.png')
+bg.save('test_image.png')
