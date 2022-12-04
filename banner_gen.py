@@ -1,9 +1,6 @@
-from cgitb import text
 import ttkbootstrap as ttk
-import math
 from PIL import Image, ImageFont, ImageDraw
 from ttkwidgets.autocomplete import AutocompleteEntry
-import os
 from datetime import date
 from tkinter.ttk import *
 from os.path import exists
@@ -794,190 +791,197 @@ class MainApp(ttk.Frame):
         # fifth
 
         # 238 x 257
+        if self.fifth_place.main_character.get():
 
-        fifth_portrait = Image.open('resources/characters/%s/portraits/%s_%s.png' % (self.game.game_name.get(), self.fifth_place.main_character.get(), self.fifth_place.main_character_color.get()))
+            fifth_portrait = Image.open('resources/characters/%s/portraits/%s_%s.png' % (self.game.game_name.get(), self.fifth_place.main_character.get(), self.fifth_place.main_character_color.get()))
 
-        fifth_portrait = fifth_portrait.resize((params.tier3_info[self.event.event_name.get()][0], params.tier3_info[self.event.event_name.get()][1]), Image.Resampling.LANCZOS)
+            fifth_portrait = fifth_portrait.resize((params.tier3_info[self.event.event_name.get()][0], params.tier3_info[self.event.event_name.get()][1]), Image.Resampling.LANCZOS)
 
-        if self.fifth_place.alternate1_character.get():
-            if self.event.event_name.get() == "NB":
-                fifth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]))
-            fifth_secondary_1 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.fifth_place.alternate1_character.get(), self.fifth_place.alternate1_character_color.get()))
-            fifth_secondary_1 = fifth_secondary_1.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
-            fifth_portrait.paste(fifth_secondary_1, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]), fifth_secondary_1)
+            if self.fifth_place.alternate1_character.get():
+                if self.event.event_name.get() == "NB":
+                    fifth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]))
+                fifth_secondary_1 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.fifth_place.alternate1_character.get(), self.fifth_place.alternate1_character_color.get()))
+                fifth_secondary_1 = fifth_secondary_1.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
+                fifth_portrait.paste(fifth_secondary_1, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]), fifth_secondary_1)
 
-        if self.fifth_place.alternate2_character.get():
-            if self.event.event_name.get() == "NB":
-                fifth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]))
-            fifth_secondary_2 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.fifth_place.alternate2_character.get(), self.fifth_place.alternate2_character_color.get()))
-            fifth_secondary_2 = fifth_secondary_2.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
-            fifth_portrait.paste(fifth_secondary_2, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]), fifth_secondary_2)
+            if self.fifth_place.alternate2_character.get():
+                if self.event.event_name.get() == "NB":
+                    fifth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]))
+                fifth_secondary_2 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.fifth_place.alternate2_character.get(), self.fifth_place.alternate2_character_color.get()))
+                fifth_secondary_2 = fifth_secondary_2.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
+                fifth_portrait.paste(fifth_secondary_2, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]), fifth_secondary_2)
 
-        # open if sponsor
-        if self.fifth_place.team.get():
-            fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][16])
-            fifth_portrait.paste(sponsor_sml, (params.tier3_info[self.event.event_name.get()][10], params.tier3_info[self.event.event_name.get()][11]))
+            # open if sponsor
+            if self.fifth_place.team.get():
+                fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][16])
+                fifth_portrait.paste(sponsor_sml, (params.tier3_info[self.event.event_name.get()][10], params.tier3_info[self.event.event_name.get()][11]))
 
-            # open sponsor text
-            sponsor5_text = Image.new('RGBA', (spnsW, spnsH))
-            sponsor5_text = create_sponsorbox(sponsor5_text, fnt, self.fifth_place.team.get())
-            fifth_portrait.paste(sponsor5_text, (params.tier3_info[self.event.event_name.get()][12], params.tier3_info[self.event.event_name.get()][13]), sponsor5_text)
-            # close sponsor text
+                # open sponsor text
+                sponsor5_text = Image.new('RGBA', (spnsW, spnsH))
+                sponsor5_text = create_sponsorbox(sponsor5_text, fnt, self.fifth_place.team.get())
+                fifth_portrait.paste(sponsor5_text, (params.tier3_info[self.event.event_name.get()][12], params.tier3_info[self.event.event_name.get()][13]), sponsor5_text)
+                # close sponsor text
 
-            # open sponsor image
-            if exists('resources/sponsors/%s.png' % (self.fifth_place.team.get())):
-                sponsor5_image = Image.open('resources/sponsors/%s.png' % (self.fifth_place.team.get()))
-                sponsor5_image.getbbox()
-                sponsor5_image = sponsor5_image.crop(sponsor5_image.getbbox())
-                sponsor5_image.thumbnail((params.tier3_info[self.event.event_name.get()][4], params.tier3_info[self.event.event_name.get()][5]), Image.Resampling.LANCZOS)
-                fifth_portrait.paste(sponsor5_image, (params.tier3_info[self.event.event_name.get()][14], params.tier3_info[self.event.event_name.get()][15]), sponsor5_image)
-        # close sponsor image
+                # open sponsor image
+                if exists('resources/sponsors/%s.png' % (self.fifth_place.team.get())):
+                    sponsor5_image = Image.open('resources/sponsors/%s.png' % (self.fifth_place.team.get()))
+                    sponsor5_image.getbbox()
+                    sponsor5_image = sponsor5_image.crop(sponsor5_image.getbbox())
+                    sponsor5_image.thumbnail((params.tier3_info[self.event.event_name.get()][4], params.tier3_info[self.event.event_name.get()][5]), Image.Resampling.LANCZOS)
+                    fifth_portrait.paste(sponsor5_image, (params.tier3_info[self.event.event_name.get()][14], params.tier3_info[self.event.event_name.get()][15]), sponsor5_image)
+            # close sponsor image
 
-        # close if sponsor
+            # close if sponsor
 
-        fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][17])
-        namebox5 = Image.new('RGBA', (nboxW, nboxH))
-        namebox5 = create_namebox(namebox5, fnt, self.fifth_place.name_tag.get().upper())
+            fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][17])
+            namebox5 = Image.new('RGBA', (nboxW, nboxH))
+            namebox5 = create_namebox(namebox5, fnt, self.fifth_place.name_tag.get().upper())
 
 
 
         # sixth
 
-        sixth_portrait = Image.open('resources/characters/%s/portraits/%s_%s.png' % (self.game.game_name.get(), self.sixth_place.main_character.get(), self.sixth_place.main_character_color.get()))
+        if self.sixth_place.main_character.get():
 
-        sixth_portrait = sixth_portrait.resize((params.tier3_info[self.event.event_name.get()][0], params.tier3_info[self.event.event_name.get()][1]), Image.Resampling.LANCZOS)
+            sixth_portrait = Image.open('resources/characters/%s/portraits/%s_%s.png' % (self.game.game_name.get(), self.sixth_place.main_character.get(), self.sixth_place.main_character_color.get()))
 
-        if self.sixth_place.alternate1_character.get():
-            if self.event.event_name.get() == "NB":
-                sixth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]))
-            sixth_secondary_1 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.sixth_place.alternate1_character.get(), self.sixth_place.alternate1_character_color.get()))
-            sixth_secondary_1 = sixth_secondary_1.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
-            sixth_portrait.paste(sixth_secondary_1, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]), sixth_secondary_1)
+            sixth_portrait = sixth_portrait.resize((params.tier3_info[self.event.event_name.get()][0], params.tier3_info[self.event.event_name.get()][1]), Image.Resampling.LANCZOS)
 
-        if self.sixth_place.alternate2_character.get():
-            if self.event.event_name.get() == "NB":
-                sixth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]))
-            sixth_secondary_2 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.sixth_place.alternate2_character.get(), self.sixth_place.alternate2_character_color.get()))
-            sixth_secondary_2 = sixth_secondary_2.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
-            sixth_portrait.paste(sixth_secondary_2, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]), sixth_secondary_2)
+            if self.sixth_place.alternate1_character.get():
+                if self.event.event_name.get() == "NB":
+                    sixth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]))
+                sixth_secondary_1 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.sixth_place.alternate1_character.get(), self.sixth_place.alternate1_character_color.get()))
+                sixth_secondary_1 = sixth_secondary_1.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
+                sixth_portrait.paste(sixth_secondary_1, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]), sixth_secondary_1)
 
-        # open if sponsor
-        if self.sixth_place.team.get():
-            fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][16])
-            sixth_portrait.paste(sponsor_sml, (params.tier3_info[self.event.event_name.get()][10], params.tier3_info[self.event.event_name.get()][11]))
+            if self.sixth_place.alternate2_character.get():
+                if self.event.event_name.get() == "NB":
+                    sixth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]))
+                sixth_secondary_2 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.sixth_place.alternate2_character.get(), self.sixth_place.alternate2_character_color.get()))
+                sixth_secondary_2 = sixth_secondary_2.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
+                sixth_portrait.paste(sixth_secondary_2, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]), sixth_secondary_2)
 
-            # open sponsor text
-            sponsor6_text = Image.new('RGBA', (spnsW, spnsH))
-            sponsor6_text = create_sponsorbox(sponsor6_text, fnt, self.sixth_place.team.get())
-            sixth_portrait.paste(sponsor6_text, (params.tier3_info[self.event.event_name.get()][12], params.tier3_info[self.event.event_name.get()][13]), sponsor6_text)
-            # close sponsor text
+            # open if sponsor
+            if self.sixth_place.team.get():
+                fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][16])
+                sixth_portrait.paste(sponsor_sml, (params.tier3_info[self.event.event_name.get()][10], params.tier3_info[self.event.event_name.get()][11]))
 
-            # open sponsor image
-            if exists('resources/sponsors/%s.png' % (self.sixth_place.team.get())):
-                sponsor6_image = Image.open('resources/sponsors/%s.png' % (self.sixth_place.team.get()))
-                sponsor6_image.getbbox()
-                sponsor6_image = sponsor6_image.crop(sponsor6_image.getbbox())
-                sponsor6_image.thumbnail((params.tier3_info[self.event.event_name.get()][4], params.tier3_info[self.event.event_name.get()][5]), Image.Resampling.LANCZOS)
-                sixth_portrait.paste(sponsor6_image, (params.tier3_info[self.event.event_name.get()][14], params.tier3_info[self.event.event_name.get()][15]), sponsor6_image)
-        # close sponsor image
+                # open sponsor text
+                sponsor6_text = Image.new('RGBA', (spnsW, spnsH))
+                sponsor6_text = create_sponsorbox(sponsor6_text, fnt, self.sixth_place.team.get())
+                sixth_portrait.paste(sponsor6_text, (params.tier3_info[self.event.event_name.get()][12], params.tier3_info[self.event.event_name.get()][13]), sponsor6_text)
+                # close sponsor text
 
-        # close if sponsor
+                # open sponsor image
+                if exists('resources/sponsors/%s.png' % (self.sixth_place.team.get())):
+                    sponsor6_image = Image.open('resources/sponsors/%s.png' % (self.sixth_place.team.get()))
+                    sponsor6_image.getbbox()
+                    sponsor6_image = sponsor6_image.crop(sponsor6_image.getbbox())
+                    sponsor6_image.thumbnail((params.tier3_info[self.event.event_name.get()][4], params.tier3_info[self.event.event_name.get()][5]), Image.Resampling.LANCZOS)
+                    sixth_portrait.paste(sponsor6_image, (params.tier3_info[self.event.event_name.get()][14], params.tier3_info[self.event.event_name.get()][15]), sponsor6_image)
+            # close sponsor image
 
-        fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][17])
-        namebox6 = Image.new('RGBA', (nboxW, nboxH))
-        namebox6 = create_namebox(namebox6, fnt, self.sixth_place.name_tag.get().upper())
+            # close if sponsor
+
+            fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][17])
+            namebox6 = Image.new('RGBA', (nboxW, nboxH))
+            namebox6 = create_namebox(namebox6, fnt, self.sixth_place.name_tag.get().upper())
 
         # seventh
 
-        seventh_portrait = Image.open('resources/characters/%s/portraits/%s_%s.png' % (self.game.game_name.get(), self.seventh_place.main_character.get(), self.seventh_place.main_character_color.get()))
+        if self.seventh_place.main_character.get():
 
-        seventh_portrait = seventh_portrait.resize((params.tier3_info[self.event.event_name.get()][0], params.tier3_info[self.event.event_name.get()][1]), Image.Resampling.LANCZOS)
+            seventh_portrait = Image.open('resources/characters/%s/portraits/%s_%s.png' % (self.game.game_name.get(), self.seventh_place.main_character.get(), self.seventh_place.main_character_color.get()))
 
-        if self.seventh_place.alternate1_character.get():
-            if self.event.event_name.get() == "NB":
-                seventh_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]))
-            seventh_secondary_1 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.seventh_place.alternate1_character.get(), self.seventh_place.alternate1_character_color.get()))
-            seventh_secondary_1 = seventh_secondary_1.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
-            seventh_portrait.paste(seventh_secondary_1, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]), seventh_secondary_1)
+            seventh_portrait = seventh_portrait.resize((params.tier3_info[self.event.event_name.get()][0], params.tier3_info[self.event.event_name.get()][1]), Image.Resampling.LANCZOS)
 
-        if self.seventh_place.alternate2_character.get():
-            if self.event.event_name.get() == "NB":
-                seventh_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]))
-            seventh_secondary_2 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.seventh_place.alternate2_character.get(), self.seventh_place.alternate2_character_color.get()))
-            seventh_secondary_2 = seventh_secondary_2.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
-            seventh_portrait.paste(seventh_secondary_2, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]), seventh_secondary_2)
+            if self.seventh_place.alternate1_character.get():
+                if self.event.event_name.get() == "NB":
+                    seventh_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]))
+                seventh_secondary_1 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.seventh_place.alternate1_character.get(), self.seventh_place.alternate1_character_color.get()))
+                seventh_secondary_1 = seventh_secondary_1.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
+                seventh_portrait.paste(seventh_secondary_1, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]), seventh_secondary_1)
 
-        # open if sponsor
-        if self.seventh_place.team.get():
-            fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][16])
-            seventh_portrait.paste(sponsor_sml, (params.tier3_info[self.event.event_name.get()][10], params.tier3_info[self.event.event_name.get()][11]))
+            if self.seventh_place.alternate2_character.get():
+                if self.event.event_name.get() == "NB":
+                    seventh_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]))
+                seventh_secondary_2 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.seventh_place.alternate2_character.get(), self.seventh_place.alternate2_character_color.get()))
+                seventh_secondary_2 = seventh_secondary_2.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
+                seventh_portrait.paste(seventh_secondary_2, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]), seventh_secondary_2)
 
-            # open sponsor text
-            sponsor7_text = Image.new('RGBA', (spnsW, spnsH))
-            sponsor7_text = create_sponsorbox(sponsor7_text, fnt, self.seventh_place.team.get())
-            seventh_portrait.paste(sponsor7_text, (params.tier3_info[self.event.event_name.get()][12], params.tier3_info[self.event.event_name.get()][13]), sponsor7_text)
-            # close sponsor text
+            # open if sponsor
+            if self.seventh_place.team.get():
+                fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][16])
+                seventh_portrait.paste(sponsor_sml, (params.tier3_info[self.event.event_name.get()][10], params.tier3_info[self.event.event_name.get()][11]))
 
-            # open sponsor image
-            if exists('resources/sponsors/%s.png' % (self.seventh_place.team.get())):
-                sponsor7_image = Image.open('resources/sponsors/%s.png' % (self.seventh_place.team.get()))
-                sponsor7_image.getbbox()
-                sponsor7_image = sponsor7_image.crop(sponsor7_image.getbbox())
-                sponsor7_image.thumbnail((params.tier3_info[self.event.event_name.get()][4], params.tier3_info[self.event.event_name.get()][5]), Image.Resampling.LANCZOS)
-                seventh_portrait.paste(sponsor7_image, (params.tier3_info[self.event.event_name.get()][14], params.tier3_info[self.event.event_name.get()][15]), sponsor7_image)
-        # close sponsor image
+                # open sponsor text
+                sponsor7_text = Image.new('RGBA', (spnsW, spnsH))
+                sponsor7_text = create_sponsorbox(sponsor7_text, fnt, self.seventh_place.team.get())
+                seventh_portrait.paste(sponsor7_text, (params.tier3_info[self.event.event_name.get()][12], params.tier3_info[self.event.event_name.get()][13]), sponsor7_text)
+                # close sponsor text
 
-        # close if sponsor
+                # open sponsor image
+                if exists('resources/sponsors/%s.png' % (self.seventh_place.team.get())):
+                    sponsor7_image = Image.open('resources/sponsors/%s.png' % (self.seventh_place.team.get()))
+                    sponsor7_image.getbbox()
+                    sponsor7_image = sponsor7_image.crop(sponsor7_image.getbbox())
+                    sponsor7_image.thumbnail((params.tier3_info[self.event.event_name.get()][4], params.tier3_info[self.event.event_name.get()][5]), Image.Resampling.LANCZOS)
+                    seventh_portrait.paste(sponsor7_image, (params.tier3_info[self.event.event_name.get()][14], params.tier3_info[self.event.event_name.get()][15]), sponsor7_image)
+            # close sponsor image
 
-        fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][17])
-        namebox7 = Image.new('RGBA', (nboxW, nboxH))
-        namebox7 = create_namebox(namebox7, fnt, self.seventh_place.name_tag.get().upper())
+            # close if sponsor
+
+            fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][17])
+            namebox7 = Image.new('RGBA', (nboxW, nboxH))
+            namebox7 = create_namebox(namebox7, fnt, self.seventh_place.name_tag.get().upper())
 
         # eighth
 
-        eighth_portrait = Image.open('resources/characters/%s/portraits/%s_%s.png' % (self.game.game_name.get(), self.eighth_place.main_character.get(), self.eighth_place.main_character_color.get()))
+        if self.eighth_place.main_character.get():
 
-        eighth_portrait = eighth_portrait.resize((params.tier3_info[self.event.event_name.get()][0], params.tier3_info[self.event.event_name.get()][1]), Image.Resampling.LANCZOS)
+            eighth_portrait = Image.open('resources/characters/%s/portraits/%s_%s.png' % (self.game.game_name.get(), self.eighth_place.main_character.get(), self.eighth_place.main_character_color.get()))
 
-        if self.eighth_place.alternate1_character.get():
-            if self.event.event_name.get() == "NB":
-                eighth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]))
-            eighth_secondary_1 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.eighth_place.alternate1_character.get(), self.eighth_place.alternate1_character_color.get()))
-            eighth_secondary_1 = eighth_secondary_1.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
-            eighth_portrait.paste(eighth_secondary_1, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]), eighth_secondary_1)
+            eighth_portrait = eighth_portrait.resize((params.tier3_info[self.event.event_name.get()][0], params.tier3_info[self.event.event_name.get()][1]), Image.Resampling.LANCZOS)
 
-        if self.eighth_place.alternate2_character.get():
-            if self.event.event_name.get() == "NB":
-                eighth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]))
-            eighth_secondary_2 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.eighth_place.alternate2_character.get(), self.eighth_place.alternate2_character_color.get()))
-            eighth_secondary_2 = eighth_secondary_2.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
-            eighth_portrait.paste(eighth_secondary_2, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]), eighth_secondary_2)
+            if self.eighth_place.alternate1_character.get():
+                if self.event.event_name.get() == "NB":
+                    eighth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]))
+                eighth_secondary_1 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.eighth_place.alternate1_character.get(), self.eighth_place.alternate1_character_color.get()))
+                eighth_secondary_1 = eighth_secondary_1.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
+                eighth_portrait.paste(eighth_secondary_1, (params.tier3_info[self.event.event_name.get()][6], params.tier3_info[self.event.event_name.get()][7]), eighth_secondary_1)
 
-        # open if sponsor
-        if self.eighth_place.team.get():
-            fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][16])
-            eighth_portrait.paste(sponsor_sml, (params.tier3_info[self.event.event_name.get()][10], params.tier3_info[self.event.event_name.get()][11]))
+            if self.eighth_place.alternate2_character.get():
+                if self.event.event_name.get() == "NB":
+                    eighth_portrait.paste(secondary_sml, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]))
+                eighth_secondary_2 = Image.open('resources/characters/%s/icons/%s_%s.png' % (self.game.game_name.get(), self.eighth_place.alternate2_character.get(), self.eighth_place.alternate2_character_color.get()))
+                eighth_secondary_2 = eighth_secondary_2.resize((params.tier3_info[self.event.event_name.get()][2], params.tier3_info[self.event.event_name.get()][3]), Image.Resampling.LANCZOS)
+                eighth_portrait.paste(eighth_secondary_2, (params.tier3_info[self.event.event_name.get()][8], params.tier3_info[self.event.event_name.get()][9]), eighth_secondary_2)
 
-            # open sponsor text
-            sponsor8_text = Image.new('RGBA', (spnsW, spnsH))
-            sponsor8_text = create_sponsorbox(sponsor8_text, fnt, self.eighth_place.team.get())
-            eighth_portrait.paste(sponsor8_text, (params.tier3_info[self.event.event_name.get()][12], params.tier3_info[self.event.event_name.get()][13]), sponsor8_text)
-            # close sponsor text
+            # open if sponsor
+            if self.eighth_place.team.get():
+                fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][16])
+                eighth_portrait.paste(sponsor_sml, (params.tier3_info[self.event.event_name.get()][10], params.tier3_info[self.event.event_name.get()][11]))
 
-            # open sponsor image
-            if exists('resources/sponsors/%s.png' % (self.eighth_place.team.get())):
-                sponsor8_image = Image.open('resources/sponsors/%s.png' % (self.eighth_place.team.get()))
-                sponsor8_image.getbbox()
-                sponsor8_image = sponsor8_image.crop(sponsor8_image.getbbox())
-                sponsor8_image.thumbnail((params.tier3_info[self.event.event_name.get()][4], params.tier3_info[self.event.event_name.get()][5]), Image.Resampling.LANCZOS)
-                eighth_portrait.paste(sponsor8_image, (params.tier3_info[self.event.event_name.get()][14], params.tier3_info[self.event.event_name.get()][15]), sponsor8_image)
-        # close sponsor image
+                # open sponsor text
+                sponsor8_text = Image.new('RGBA', (spnsW, spnsH))
+                sponsor8_text = create_sponsorbox(sponsor8_text, fnt, self.eighth_place.team.get())
+                eighth_portrait.paste(sponsor8_text, (params.tier3_info[self.event.event_name.get()][12], params.tier3_info[self.event.event_name.get()][13]), sponsor8_text)
+                # close sponsor text
 
-        # close if sponsor
+                # open sponsor image
+                if exists('resources/sponsors/%s.png' % (self.eighth_place.team.get())):
+                    sponsor8_image = Image.open('resources/sponsors/%s.png' % (self.eighth_place.team.get()))
+                    sponsor8_image.getbbox()
+                    sponsor8_image = sponsor8_image.crop(sponsor8_image.getbbox())
+                    sponsor8_image.thumbnail((params.tier3_info[self.event.event_name.get()][4], params.tier3_info[self.event.event_name.get()][5]), Image.Resampling.LANCZOS)
+                    eighth_portrait.paste(sponsor8_image, (params.tier3_info[self.event.event_name.get()][14], params.tier3_info[self.event.event_name.get()][15]), sponsor8_image)
+            # close sponsor image
 
-        fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][17])
-        namebox8 = Image.new('RGBA', (nboxW, nboxH))
-        namebox8 = create_namebox(namebox8, fnt, self.eighth_place.name_tag.get().upper())
+            # close if sponsor
+
+            fnt = ImageFont.truetype('resources/events/%s/font.ttf' % (self.event.event_name.get()), params.tier3_info[self.event.event_name.get()][17])
+            namebox8 = Image.new('RGBA', (nboxW, nboxH))
+            namebox8 = create_namebox(namebox8, fnt, self.eighth_place.name_tag.get().upper())
 
         # top bar information
 
@@ -1020,10 +1024,14 @@ class MainApp(ttk.Frame):
         bg.paste(second_portrait, (params.coords_portraits[self.event.event_name.get()][2], params.coords_portraits[self.event.event_name.get()][5]), second_portrait)
         bg.paste(third_portrait, (params.coords_portraits[self.event.event_name.get()][3], params.coords_portraits[self.event.event_name.get()][5]), third_portrait)
         bg.paste(fourth_portrait, (params.coords_portraits[self.event.event_name.get()][4], params.coords_portraits[self.event.event_name.get()][5]), fourth_portrait)
-        bg.paste(fifth_portrait, (params.coords_portraits[self.event.event_name.get()][6], params.coords_portraits[self.event.event_name.get()][10]), fifth_portrait)
-        bg.paste(sixth_portrait, (params.coords_portraits[self.event.event_name.get()][7], params.coords_portraits[self.event.event_name.get()][10]), sixth_portrait)
-        bg.paste(seventh_portrait, (params.coords_portraits[self.event.event_name.get()][8], params.coords_portraits[self.event.event_name.get()][10]), seventh_portrait)
-        bg.paste(eighth_portrait, (params.coords_portraits[self.event.event_name.get()][9], params.coords_portraits[self.event.event_name.get()][10]), eighth_portrait)
+        if self.fifth_place.main_character.get():
+            bg.paste(fifth_portrait, (params.coords_portraits[self.event.event_name.get()][6], params.coords_portraits[self.event.event_name.get()][10]), fifth_portrait)
+        if self.sixth_place.main_character.get():
+            bg.paste(sixth_portrait, (params.coords_portraits[self.event.event_name.get()][7], params.coords_portraits[self.event.event_name.get()][10]), sixth_portrait)
+        if self.seventh_place.main_character.get():
+            bg.paste(seventh_portrait, (params.coords_portraits[self.event.event_name.get()][8], params.coords_portraits[self.event.event_name.get()][10]), seventh_portrait)
+        if self.eighth_place.main_character.get():
+            bg.paste(eighth_portrait, (params.coords_portraits[self.event.event_name.get()][9], params.coords_portraits[self.event.event_name.get()][10]), eighth_portrait)
 
         bg.paste(nameplates, (0,0), nameplates)
 
@@ -1031,10 +1039,14 @@ class MainApp(ttk.Frame):
         bg.paste(namebox2, (params.coords_nameboxes[self.event.event_name.get()][2], params.coords_nameboxes[self.event.event_name.get()][5]), namebox2)
         bg.paste(namebox3, (params.coords_nameboxes[self.event.event_name.get()][3], params.coords_nameboxes[self.event.event_name.get()][5]), namebox3)
         bg.paste(namebox4, (params.coords_nameboxes[self.event.event_name.get()][4], params.coords_nameboxes[self.event.event_name.get()][5]), namebox4)
-        bg.paste(namebox5, (params.coords_nameboxes[self.event.event_name.get()][6], params.coords_nameboxes[self.event.event_name.get()][10]), namebox5)
-        bg.paste(namebox6, (params.coords_nameboxes[self.event.event_name.get()][7], params.coords_nameboxes[self.event.event_name.get()][10]), namebox6)
-        bg.paste(namebox7, (params.coords_nameboxes[self.event.event_name.get()][8], params.coords_nameboxes[self.event.event_name.get()][10]), namebox7)
-        bg.paste(namebox8, (params.coords_nameboxes[self.event.event_name.get()][9], params.coords_nameboxes[self.event.event_name.get()][10]), namebox8)
+        if self.fifth_place.main_character.get():
+            bg.paste(namebox5, (params.coords_nameboxes[self.event.event_name.get()][6], params.coords_nameboxes[self.event.event_name.get()][10]), namebox5)
+        if self.sixth_place.main_character.get():            
+            bg.paste(namebox6, (params.coords_nameboxes[self.event.event_name.get()][7], params.coords_nameboxes[self.event.event_name.get()][10]), namebox6)
+        if self.seventh_place.main_character.get():
+            bg.paste(namebox7, (params.coords_nameboxes[self.event.event_name.get()][8], params.coords_nameboxes[self.event.event_name.get()][10]), namebox7)
+        if self.eighth_place.main_character.get():
+            bg.paste(namebox8, (params.coords_nameboxes[self.event.event_name.get()][9], params.coords_nameboxes[self.event.event_name.get()][10]), namebox8)
 
         bg.paste(namebox_date, (params.coords_misc[self.event.event_name.get()][0], params.coords_misc[self.event.event_name.get()][1]), namebox_date)
         bg.paste(namebox_slug, (params.coords_misc[self.event.event_name.get()][2], params.coords_misc[self.event.event_name.get()][3]), namebox_slug)

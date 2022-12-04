@@ -31,7 +31,7 @@ tier1_info = {
         8, # 9 : secondary 2 paste y
         445, # 10 : sponsor box paste x
         530, # 11 : sponsor box paste y
-        510, # 12 : sponsor text paste x
+        520, # 12 : sponsor text paste x
         533, # 13 : sponsor text paste y
         465, # 14 : sponsor image paste x
         535, # 15 : sponsor image paste y
@@ -54,9 +54,9 @@ tier1_info = {
         101, # 7 : secondary 1 paste y
         554, # 8 : secondary 2 paste x
         216, # 9 : secondary 2 paste y
-        445, # 10 : sponsor box paste x
+        450, # 10 : sponsor box paste x
         530, # 11 : sponsor box paste y
-        510, # 12 : sponsor text paste x
+        520, # 12 : sponsor text paste x
         533, # 13 : sponsor text paste y
         465, # 14 : sponsor image paste x
         535, # 15 : sponsor image paste y
@@ -85,10 +85,10 @@ tier2_info = {
         8, # 9 : secondary 2 paste y
         197, # 10 : sponsor box paste x
         276, # 11 : sponsor box paste y
-        250, # 12 : sponsor text paste x
+        260, # 12 : sponsor text paste x
         277, # 13 : sponsor text paste y
         215, # 14 : sponsor image paste x
-        280, # 15 : sponsor image paste y
+        278, # 15 : sponsor image paste y
 
         # font size
         20, # 16 : sponsor text font size
