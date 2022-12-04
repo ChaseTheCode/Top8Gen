@@ -54,7 +54,7 @@ class MainApp(ttk.Frame):
 
         # oh boy time for characters
 
-        with open('resources/csv/characters.csv', 'r') as file2:
+        with open('characters.csv', 'r') as file2:
             character_base = file2.readlines()
 
             characters, em_list = [], []
@@ -64,7 +64,7 @@ class MainApp(ttk.Frame):
 
         event_list = ["USW", "MNM", "SSO", "NB"]
 
-        game_list = ["SSBU", "SSBM", "GGST", "KOFXV", "DBFZ", "DNF", "MBTL", ]
+        game_list = ["SSBU", "SSBM", "GGST", "KOFXV", "DBFZ", "DNF", "MBTL", "XRD", ]
 
         color_list = ["00", "01", "02", "03", "04", "05", "06", "07"]
 
